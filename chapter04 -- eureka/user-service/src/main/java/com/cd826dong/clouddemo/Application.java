@@ -17,6 +17,7 @@ package com.cd826dong.clouddemo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * SpringCloud示例工程 -- 用户服务
@@ -25,6 +26,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @since 1.0.0
  */
 @EnableDiscoveryClient
+/*
+* 若加了这个注解，则pom.xml的依赖是<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+*
+* 当你在 Spring Boot 应用中使用 @EnableEurekaClient 注解时，该应用将具备以下功能：
+* 将自身作为一个服务实例注册到 Eureka 服务器，以便其他服务可以发现和调用它。
+* 从 Eureka 服务器获取其他服务实例的信息，以便在需要时调用其他服务。
+* */
+//@EnableEurekaClient
 @SpringBootApplication
 public class Application {
 

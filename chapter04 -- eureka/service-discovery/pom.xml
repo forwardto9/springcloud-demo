@@ -8,7 +8,7 @@
         <groupId>cd826dong.cloud</groupId>
         <artifactId>springcloud-book-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../parent</relativePath>
+        <relativePath/>
     </parent>
 
     <artifactId>service-discovery</artifactId>
@@ -18,7 +18,8 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>2.2.5.RELEASE</version>
         </dependency>
     </dependencies>
 

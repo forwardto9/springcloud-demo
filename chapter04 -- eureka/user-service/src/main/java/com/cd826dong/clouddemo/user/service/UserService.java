@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -37,24 +38,16 @@ public class UserService {
 
     public List<UserDto> findAll() {
         List<User> users = this.userRepository.findAll();
-        return users.stream().map((user) -> {
-            return new UserDto(user);
-        }).collect(Collectors.toList());
+        return users.stream().map(UserDto::new).collect(Collectors.toList());
     }
 
     public UserDto load(Long id) {
-        User user = this.userRepository.findOne(id);
-        if (null == user)
-            return null;
-
-        return new UserDto(user);
+        Optional<User> user = this.userRepository.findById(id);
+        return user.map(UserDto::new).orElse(null);
     }
 
     public UserDto save(UserDto userDto) {
-        User user = this.userRepository.findOne(userDto.getId());
-        if (null == user) {
-            user = new User();
-        }
+        User user = this.userRepository.findById(userDto.getId()).orElse(new User());
         user.setNickname(userDto.getNickname());
         user.setAvatar(userDto.getAvatar());
         this.userRepository.save(user);
@@ -63,6 +56,6 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        this.userRepository.delete(id);
+        this.userRepository.deleteById(id);
     }
 }
