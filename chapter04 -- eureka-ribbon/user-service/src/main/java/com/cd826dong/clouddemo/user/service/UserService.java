@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 public class UserService {
     @Value("${server.port}")
     protected int serverPort = 0;
+
     @Autowired
     protected UserRepository userRepository;
 
