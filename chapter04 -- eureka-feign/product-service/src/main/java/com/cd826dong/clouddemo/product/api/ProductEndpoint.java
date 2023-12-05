@@ -65,7 +65,7 @@ public class ProductEndpoint {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Product detail(@PathVariable Long id){
-        return this.productRepository.findOne(id);
+        return this.productRepository.findById(id).get();
     }
 
     /**
@@ -81,7 +81,7 @@ public class ProductEndpoint {
 
         return commentList.stream().map((comment) -> {
             ProductCommentDto dto = new ProductCommentDto(comment);
-            dto.setProduct(this.productRepository.findOne(comment.getProductId()));
+            dto.setProduct(this.productRepository.findById(comment.getProductId()).get());
             dto.setAuthor(this.loadUserByFeign(comment.getAuthorId()));
             return dto;
         }).collect(Collectors.toList());

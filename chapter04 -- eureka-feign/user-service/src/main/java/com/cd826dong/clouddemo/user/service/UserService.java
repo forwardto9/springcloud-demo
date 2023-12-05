@@ -45,7 +45,7 @@ public class UserService {
     }
 
     public UserDto load(Long id) {
-        User user = this.userRepository.findOne(id);
+        User user = this.userRepository.findById(id).get();
         if (null == user)
             return null;
 
@@ -53,7 +53,7 @@ public class UserService {
     }
 
     public UserDto save(UserDto userDto) {
-        User user = this.userRepository.findOne(userDto.getId());
+        User user = this.userRepository.findById(userDto.getId()).get();
         if (null == user) {
             user = new User();
         }
@@ -65,6 +65,6 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        this.userRepository.delete(id);
+        this.userRepository.deleteById(id);
     }
 }
