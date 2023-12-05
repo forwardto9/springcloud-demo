@@ -51,7 +51,7 @@ public class UserEndpoint {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public UserDto detail(@PathVariable Long id){
-        User user = this.userRepository.findOne(id);
+        User user = this.userRepository.findById(id).orElse(new User());
         if (null == user)
             return null;
         return new UserDto(user);
